@@ -30,7 +30,7 @@ After you're finished please remove all the comments and instructions!
 # 📗 Table of Contents
 
 - [📗 Table of Contents](#-table-of-contents)
-- [📖 Decode Morse Code ](#-decode-morse-code-)
+- [📖 OOP-school-library ](#-oop-school-library-)
   - [🛠 Built With ](#-built-with-)
     - [Tech Stack ](#tech-stack-)
     - [Key Features ](#key-features-)
@@ -50,7 +50,7 @@ After you're finished please remove all the comments and instructions!
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 Decode Morse Code <a name="about-project"></a>
+# 📖 OOP-school-library <a name="about-project"></a>
 
 > An app that was built with Ruby using OOP principles. The app allow you to add new students, teachers, books and save records of who borrowed a given book and when.
 
@@ -95,7 +95,7 @@ In order to run this project you need:
 
 - Mac or PC
 - Install Ruby
-- Understanding of Ruby
+- Understanding OOP principles
 
 ### Setup
 
