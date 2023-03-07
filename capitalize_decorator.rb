@@ -1,5 +1,5 @@
-require_relative "./base-decorator"
-require_relative "./person.rb"
+require_relative './base_decorator'
+require_relative './person'
 
 class CapitalizeDecorator < Decorator
   def initialize(nameable)

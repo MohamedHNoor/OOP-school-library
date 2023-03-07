@@ -1,6 +1,6 @@
-require_relative "./base-decorator"
-require_relative "./person"
-require_relative "./capitalize-decorator"
+require_relative './base_decorator'
+require_relative './person'
+require_relative './capitalize_decorator'
 
 class TrimmerDecorator < Decorator
   def initialize(nameable)
@@ -19,10 +19,10 @@ person = Person.new(22, 'maximilianus')
 
 puts person.correct_name
 
-capitalizedPerson = CapitalizeDecorator.new(person)
+capitalized_person = CapitalizeDecorator.new(person)
 
-puts capitalizedPerson.correct_name
+puts capitalized_person.correct_name
 
-capitalizedTrimmedPerson = TrimmerDecorator.new(capitalizedPerson)
-  
-puts capitalizedTrimmedPerson.correct_name
+capitalized_trimmed_person = TrimmerDecorator.new(capitalized_person)
+
+puts capitalized_trimmed_person.correct_name
