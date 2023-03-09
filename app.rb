@@ -5,7 +5,6 @@ require_relative './teacher'
 require_relative './rental'
 require_relative './classroom'
 require_relative './nameable'
-
 class App
   def initialize
     @books = []
@@ -91,38 +90,36 @@ class App
 
   def create_rental
     if @books.empty?
-      puts 'No book found'
+      puts 'No book record found'
     elsif @people.empty?
-      puts 'No person found'
+      puts 'No person record found'
     else
-      puts 'Select a book from the following list by number'
+      puts 'Select a book from the following list by number:'
       @books.each_with_index do |book, index|
         puts "#{index.to_i + 1}) Book Title: #{book.title}, Author: #{book.author}"
       end
       rental_book = gets.chomp.to_i - 1
-
-      puts 'Select a person from the following list by number'
+      puts 'Select a person from the following list by number:'
       @people.each_with_index do |person, index|
-        puts "#{index.to_i + 1} Name: #{person.name} Age: #{person.age} Id: #{person.id}"
+        puts "#{index.to_i + 1}) Name: #{person.name} Age: #{person.age} Id: #{person.id}"
       end
       rental_person = gets.chomp.to_i - 1
-
-      puts 'Please enter the date'
+      puts 'Please enter the date:'
       date = gets.chomp
       rental_detail = Rental.new(date, @books[rental_book], @people[rental_person])
       @rentals.push(rental_detail)
-      puts 'Rental Created Successfully'
+      puts 'Rental created successfully'
     end
+  end
 
-    def list_all_rentals
-      if @rentals.empty?
-        puts 'There are no rentals'
-      else
-        puts 'Please type person id'
-        id = gets.chomp.to_i
-        @rentals.each do |rental|
-          puts "Date: #{rental.date}, Book:#{rental.book.title} by #{rental.book.author}"
-        end
+  def list_all_rentals
+    if @rentals.empty?
+      puts 'There are no rentals'
+    else
+      puts 'Please type person id'
+      id = gets.chomp.to_i
+      @rentals.each do |rental|
+        puts "Date: #{rental.date}, Book:#{rental.book.title} by #{rental.book.author}" if rental.person.id == id
       end
     end
   end

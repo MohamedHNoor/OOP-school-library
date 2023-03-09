@@ -19,7 +19,7 @@ class Main
     @list.each do |index, string|
       puts "#{index} - #{string}"
     end
-    integer = gets.chomp
+    gets.chomp
   end
 
   response = App.new
