@@ -15,9 +15,9 @@ class App
 
   def list_all_books
     if @books.empty?
-      puts 'There is no book'
+      puts 'There is no book available'
     else
-      @books.eack { |book| puts "#{book.title} written by #{book.author}" }
+      @books.each { |book| puts "Title: #{book.title}, Author: #{book.author}" }
     end
   end
 
@@ -25,7 +25,7 @@ class App
     if @people.empty?
       puts 'There is no people'
     else
-      @people.each { |person| puts "Name:#{person.name} Age:#{person.age} Class:#{person.class} ID:#{person.id}" }
+      @people.each { |person| puts "Name: #{person.name} Age: #{person.age} Class:#{person.class} ID: #{person.id}" }
     end
   end
 
@@ -39,72 +39,89 @@ class App
     when 2
       create_teacher
     end
+  end
 
-    def create_student
-      puts 'Name:'
-      name = gets.chomp
+  def create_student
+    puts 'Classroom'
+    classroom = gets.chomp
 
-      puts 'Age:'
-      age = gets.chomp
+    puts 'Age:'
+    age = gets.chomp
 
-      puts 'has Parent permission? [Y/N]'
-      parent_permission = gets.chomp
+    puts 'Name:'
+    name = gets.chomp
 
-      puts 'Classroom'
-      classroom = gets.chomp
+    puts 'Has Parent permission? [Y/N]'
+    parents_permission = gets.chomp
 
-      student = Student.new(classroom, age, name, parent_permission)
-      @people.push(student)
-    end
+    student = Student.new(classroom, age, name, parents_permission)
+    @people.push(student)
+    puts "Student Created Successfully"
+  end
 
-    def create_teacher
-      puts 'Age:'
-      age = gets.chomp
+  def create_teacher
+    puts 'Specialization:'
+    specialization = gets.chomp
 
-      puts 'Name:'
-      name = gets.chomp
+    puts 'Age:'
+    age = gets.chomp
 
-      puts 'Specialization:'
-      specialization = gets.chomp
-    end
+    puts 'Name:'
+    name = gets.chomp
 
-    def create_book
-      puts 'Title:'
-      title = gets.chomp
+    puts "Has Parent permission? [Y/N]"
+    parent_permission = gets.chomp
+    
+    teacher = Teacher.new(specialization, age, name, parent_permission)
+    @people.push(teacher)
+    puts "Teacher Created Successfully"
+  end
 
-      puts 'Author:'
-      author = gets.chomp
+  def create_book
+    puts 'Title:'
+    title = gets.chomp
 
-      book = Book.new(title, author)
-      @books.push(book)
-    end
+    puts 'Author:'
+    author = gets.chomp
 
-    def create_rental
-      puts 'Date(yyy/dd/mm)'
+    book = Book.new(title, author)
+    @books.push(book)
+    puts "Book Created Successfully"
+  end
+
+  def create_rental
+    if @books.length.zero?
+      puts "No book found"
+    elsif @people.length.zero?
+      puts "No person found"
+    else
+      puts "Select a book from the following list by number"
+      @books.each_with_index do |book, index|
+        puts "#{index.to_i + 1}) Book Title: #{book.title}, Author: #{book.author}"
+      end
+      rental_book = gets.chomp.to_i - 1
+
+      puts "Select a person from the following list by number"
+      @people.each_with_index do |person, index|
+        puts "#{index.to_i + 1} Name: #{person.name} Age: #{person.age} Id: #{person.id}"
+      end
+      rental_person = gets.chomp.to_i - 1
+
+      puts "Please enter the date"
       date = gets.chomp
+      rental_detail = Rental.new(date, @books[rental_book], @people[rental_person])
+      @rentals.push(rental_detail)
+    puts "Rental Created Successfully"
+  end
 
-      puts 'Select a book'
-      @books.each_with_index { |book, index| puts "#{index} #{book.title} written by #{book.author}" }
-      book_id = gets.chomp.to_i
-      book = @books[book_id]
-
-      puts 'Select a person'
-      @people.each_with_index { |person, index| puts "#{index} #{person.name}" }
-      person_id = gets.chomp.to_i
-      person = @people[person_id]
-
-      rental = Rental.new(date, book, person)
-      @rentals.push(rental)
-    end
-
-    def list_all_rentals
-      if @rentals.empty?
-        puts 'There are no rentals'
-      else
-        puts 'Please type person id'
-        id = gets.chomp.to_i
-        @rentals.each do |rental|
-          puts "Date: #{rental.date}, Book:#{rental.book.title} by #{rental.book.author}"
+  def list_all_rentals
+    if @rentals.empty?
+      puts 'There are no rentals'
+    else
+      puts 'Please type person id'
+      id = gets.chomp.to_i
+      @rentals.each do |rental|
+        puts "Date: #{rental.date}, Book:#{rental.book.title} by #{rental.book.author}"
         end
       end
     end
