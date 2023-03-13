@@ -11,13 +11,66 @@ class App
     @books = []
     @people = []
     @rentals = []
+    @input = nil
+    @options = ['List all books', 'List all people', 'Create a person', 'Create a book', 'Create a rental',
+                'List all rentals for a given person id', 'Exit']
   end
 
+  def run
+    loop do
+      options
+      adjust_input
+      validate_input(1, 7)
+      action
+    end
+  end
+
+  def options
+    puts 'Please choose an option by entering a number:'
+    @options.each_with_index { |option, index| puts "#{index + 1}) #{option}" }
+  end
+
+  def adjust_input
+    @input = gets.chomp.to_i
+  end
+
+  def validate_input(min, max)
+    return unless @input < min || @input > max
+
+    puts 'Invalid input, please try again'
+    options
+    adjust_input
+  end
+
+  # rubocop:disable Metrics/CyclomaticComplexity
+  def action
+    case @input
+    when 1
+      list_all_books
+    when 2
+      list_all_people
+    when 3
+      create_person
+    when 4
+      create_book
+    when 5
+      create_rental
+    when 6
+      list_all_rentals
+    when 7
+      puts 'Thank you for using this app!'
+      exit
+    end
+  end
+
+  # rubocop:enable Metrics/CyclomaticComplexity
   def list_all_books
     if @books.empty?
       puts 'There is no book available'
     else
+      puts("----------------------------------------------------\n")
       @books.each { |book| puts "Title: #{book.title}, Author: #{book.author}" }
+      puts("----------------------------------------------------\n")
     end
   end
 
@@ -25,7 +78,9 @@ class App
     if @people.empty?
       puts 'There is no people'
     else
+      puts("----------------------------------------------------\n")
       @people.each { |person| puts "Name: #{person.name} Age: #{person.age} Class:#{person.class} ID: #{person.id}" }
+      puts("----------------------------------------------------\n")
     end
   end
 
@@ -120,7 +175,9 @@ class App
       puts 'Please type person id'
       id = gets.chomp.to_i
       @rentals.each do |rental|
+        puts("----------------------------------------------------\n")
         puts "Date: #{rental.date}, Book:#{rental.book.title} by #{rental.book.author}" if rental.person.id == id
+        puts("----------------------------------------------------\n")
       end
     end
   end
