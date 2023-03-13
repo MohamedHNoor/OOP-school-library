@@ -131,6 +131,12 @@ Install this project with:
 - Twitter: [@MohamedHNoor](https://twitter.com/MohamedHNoor)
 - LinkedIn: [@MohamedHNoor](https://www.linkedin.com/in/mohamedhnoor/)
 
+👤 **Ameer Hamza**
+
+- GitHub: [@githubhandle](https://github.com/ameerhamzakhalid)
+- Twitter: [@twitterhandle](https://twitter.com/@ameeerhamza1997)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/ameerhamzakhalid/)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- FUTURE FEATURES -->
